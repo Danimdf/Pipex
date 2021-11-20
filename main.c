@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/11/20 19:04:01 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/11/20 19:10:07 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void valid_params(t_data *data)
 {
 	if (data->ac > 5 || data->ac < 5)
-		printf("\nnumber of parameters is incorrect\n");
+		perror("\nnumber of parameters is incorrect\n");
 	else{
 		printf("Correct!");
 	}
