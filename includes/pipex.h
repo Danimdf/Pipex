@@ -12,10 +12,10 @@ typedef struct s_data
 } t_data;
 
 int		main(int argc, char **argv, char **envp);
-void	valid_params(t_data *data);
+int	valid_params(t_data *data);
+
+//utils
 void	ft_bzero(void *s, size_t n);
-
-
-
+int	ft_strncmp(const char *str1, const char *str2, size_t n);
 
 #endif
