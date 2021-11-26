@@ -6,51 +6,56 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/11/24 20:58:08 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/11/26 17:30:28 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/pipex.h"
 
-/*char	get_path(t_data *data)
+char	get_path(t_data *data, char **argv, char **env)
 {
 	int i;
+	char *str;
+
 	i = 0;
-	while (data->ev[i])
+	str = "";
+
+	while (env[i])
 	{
-		if (ft_strncmp("PATH=", data->ev[i], 5))
-			return (*data->ev[i] + 5);
+		if (ft_strncmp("PATH=", env[i], 5) == 0)
+			str = ft_strdup(env[i] + 5);
 		i++;
 	}
-	//printf("%s", *data->ev);
-	return(0);
-}*/
+	//printf("%s", str);
 
-void	valid_params(t_data *data)
+	data->path = **ft_split(str, ':');
+	data->cmd1 = **ft_split(argv[2], ' ');
+	//printf("%s", argv[2]);
+	data->cmd2 = **ft_split(argv[3], ' ');
+	//printf("%s", argv[3]);
+
+	//printf("%s", *env);
+	return(0);
+}
+
+void	valid_params(t_data *data, char **argv, char **env)
 {
 	if (data->ac != 5)
 		perror("\nnumber of parameters is incorrect\n");
 	else{
-		printf("\nCorrect!\n");
-		//get_path(data);
+		//printf("\nCorrect!\n");
+		get_path(data, argv, env);
 	}
 	//return (0);
 }
 
-int main(int argc, char *argv[], char *env[])
+int main(int argc, char **argv, char **env)
 {
 	t_data data;
-	int i;
+
 	data.ac = argc;
-	data.av = *argv;
-	i = -1;
-	while (env[++i] != NULL)
-	{
-		printf("%s\n", env[i]);
-		i++;
-	}
-	//ft_bzero(&data, sizeof(t_data));
-	valid_params(&data);
+
+	valid_params(&data, argv, env);
 
 	//this_pipe(data);
 	return (0);
