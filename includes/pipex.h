@@ -9,9 +9,11 @@
 
 typedef struct s_data
 {
-	char path;
-	char cmd1;
-	char cmd2;
+	char	**path;
+	char	**cmd1;
+	char	**cmd2;
+	char	*path1;
+	char	*path2;
 	int		ac;
 	//char	*ev;
 } t_data;
@@ -19,10 +21,13 @@ typedef struct s_data
 int		main(int argc, char *argv[], char **envp);
 void	valid_params(t_data *data, char **argv, char **env);
 char	get_path(t_data *data, char **argv, char **env);
+void	check_path_cmd1(t_data *data);
 
 //utils
 int	ft_strncmp(const char *str1, const char *str2, size_t n);
 char	*ft_strdup(const char *str1);
 char	**ft_split(const char *s, char c);
+char	*ft_strjoin(char const *s1, char const *s2);
+
 
 #endif

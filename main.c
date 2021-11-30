@@ -6,11 +6,34 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/11/26 17:30:28 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/11/29 17:47:41 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/pipex.h"
+
+
+void	check_path_cmd1(t_data *data)
+{
+	char *temp;
+	char *temp1;
+	int	i;
+
+	i = 0;
+	while (data->path[i])
+	{
+		temp = ft_strjoin(data->path[i], "/");
+		temp1 = ft_strjoin(temp, *data->cmd1);
+
+		if (access(temp1, F_OK) == 0)
+		{
+			data->path1 = ft_strdup(temp1);
+			printf ("%s\n", data->path1);
+		}
+		i++;
+	}
+	perror("\nInvalids comands. Please check a line command is: ./pipex file1 cmd1 cmd2 file2\n");
+}
 
 char	get_path(t_data *data, char **argv, char **env)
 {
@@ -28,13 +51,13 @@ char	get_path(t_data *data, char **argv, char **env)
 	}
 	//printf("%s", str);
 
-	data->path = **ft_split(str, ':');
-	data->cmd1 = **ft_split(argv[2], ' ');
+	data->path = ft_split(str, ':');
+	data->cmd1 = ft_split(argv[2], ' ');
 	//printf("%s", argv[2]);
-	data->cmd2 = **ft_split(argv[3], ' ');
+	data->cmd2 = ft_split(argv[3], ' ');
 	//printf("%s", argv[3]);
 
-	//printf("%s", *env);
+	check_path_cmd1(data);
 	return(0);
 }
 
@@ -52,7 +75,6 @@ void	valid_params(t_data *data, char **argv, char **env)
 int main(int argc, char **argv, char **env)
 {
 	t_data data;
-
 	data.ac = argc;
 
 	valid_params(&data, argv, env);

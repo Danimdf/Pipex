@@ -6,7 +6,7 @@
 #    By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/19 16:52:46 by dmonteir          #+#    #+#              #
-#    Updated: 2021/11/26 17:01:15 by dmonteir         ###   ########.fr        #
+#    Updated: 2021/11/29 17:45:10 by dmonteir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ FILES =  main.c \
 		./utils/ft_strncmp.c \
 		./utils/ft_strdup.c \
 		./utils/ft_split.c \
+		./utils/ft_strjoin.c \
 
 RM = rm -f
 OBJS = $(FILES:.c=.o)
