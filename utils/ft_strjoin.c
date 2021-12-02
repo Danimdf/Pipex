@@ -6,11 +6,63 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 17:39:28 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/11/29 17:44:20 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/02 20:09:31 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+
+
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
+{
+	size_t	dest_i;
+	size_t	src_i;
+	size_t	i;
+	size_t	j;
+
+	dest_i = ft_strlen(dest);
+	src_i = ft_strlen(src);
+	i = dest_i;
+	j = 0;
+	if (dest_i >= size)
+		return (src_i + size);
+	while (src[j] != '\0' && i < (size - 1))
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
+	return (src_i + dest_i);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	if (!dst || !src)
+		return (0);
+	if (size == 0)
+		return (ft_strlen(src));
+	while ((src[i] != '\0' && i < size - 1))
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (ft_strlen(src));
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	len;
+
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -29,3 +81,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strlcat(str + (s1_len), s2, s2_len + 1);
 	return (str);
 }
+
