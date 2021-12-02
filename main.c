@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/11/29 17:47:41 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/02 20:35:02 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 
 void	check_path_cmd1(t_data *data)
 {
+	//Get path of comand 1
 	char *temp;
 	char *temp1;
 	int	i;
 
 	i = 0;
+	//printf("oiii");
 	while (data->path[i])
 	{
 		temp = ft_strjoin(data->path[i], "/");
@@ -28,8 +30,13 @@ void	check_path_cmd1(t_data *data)
 		if (access(temp1, F_OK) == 0)
 		{
 			data->path1 = ft_strdup(temp1);
+			//free(temp);
+			//free(temp1);
+			//return ;
 			printf ("%s\n", data->path1);
 		}
+		//free(temp);
+		//free(temp1);
 		i++;
 	}
 	perror("\nInvalids comands. Please check a line command is: ./pipex file1 cmd1 cmd2 file2\n");
