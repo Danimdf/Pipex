@@ -6,14 +6,14 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/02 20:35:02 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/02 20:46:54 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/pipex.h"
 
 
-void	check_path_cmd1(t_data *data)
+char	check_path_cmd1(t_data *data)
 {
 	//Get path of comand 1
 	char *temp;
@@ -32,14 +32,15 @@ void	check_path_cmd1(t_data *data)
 			data->path1 = ft_strdup(temp1);
 			//free(temp);
 			//free(temp1);
-			//return ;
+			//return (data->path1);
 			printf ("%s\n", data->path1);
 		}
 		//free(temp);
 		//free(temp1);
 		i++;
 	}
-	perror("\nInvalids comands. Please check a line command is: ./pipex file1 cmd1 cmd2 file2\n");
+	//perror("\nInvalids comands. Please check a line command is: ./pipex file1 cmd1 cmd2 file2\n");
+	return (0);
 }
 
 char	get_path(t_data *data, char **argv, char **env)
