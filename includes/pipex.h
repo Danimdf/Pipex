@@ -15,13 +15,14 @@ typedef struct s_data
 	int		ac;
 	char	*file1;
 	char	*file2;
+	char	*multi_cmds;
 	//char	*ev;
 } t_data;
 
 int		main(int argc, char *argv[], char **envp);
 void	valid_params(t_data *data, char **argv, char **env);
 char	get_path(t_data *data, char **argv, char **env);
-char	check_path_cmd1(t_data *data);
+void	check_path_cmd1(t_data *data);
 void get_cmds(t_data *data, char **argv);
 
 //utils

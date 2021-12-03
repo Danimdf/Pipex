@@ -6,14 +6,14 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/03 18:58:11 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/03 19:46:49 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/pipex.h"
 
-/*
-char	check_path_cmd1(t_data *data)
+
+/* void	check_path_cmd1(t_data *data)
 {
 	//Get path of comand 1
 	char *temp;
@@ -22,11 +22,14 @@ char	check_path_cmd1(t_data *data)
 
 	i = 0;
 	//printf("oiii");
-	while (data->path[i])
+	while (data->path[i++])
 	{
 		temp = ft_strjoin(data->path[i], "/");
-		temp1 = ft_strjoin(temp, *data->cmd1);
+		//printf("\n%s\n", temp);
+		temp1 = ft_strjoin(temp, (data->multi_cmds - 1));
 
+		//printf("\n%s\n", temp1);
+	}
 		if (access(temp1, F_OK) == 0)
 		{
 			data->path1 = ft_strdup(temp1);
@@ -46,21 +49,18 @@ char	check_path_cmd1(t_data *data)
 void	get_cmds(t_data *data, char **argv)
 {
 	int i;
-	char *teste;
 	data->file1 = argv[1];
 	data->file2 = argv[data->ac - 1];
 
 	i = 0;
 	while (argv[i++])
 	{
-		if (argv[i] != data->file1 && argv[i] != data->file2)
+		if (argv[i] != data->file1 && argv[i] != data->file2 && argv[i] != NULL)
 		{
-			teste = argv[i];
-			printf("\n%s\n", teste);
+			data->multi_cmds = argv[i];
+			printf("\n%s\n", data->multi_cmds);
 		}
 	}
-	//printf("%s\n", data->file2);
-
 }
 
 char	get_path(t_data *data, char **argv, char **env)
@@ -82,7 +82,7 @@ char	get_path(t_data *data, char **argv, char **env)
 
 	data->path = ft_split(str, ':');
 	get_cmds(data, argv);
-	check_path_cmd1(data);
+	//check_path_cmd1(data);
 	return(0);
 }
 
