@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/03 18:49:28 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/03 18:58:11 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	check_path_cmd1(t_data *data)
 void	get_cmds(t_data *data, char **argv)
 {
 	int i;
+	char *teste;
 	data->file1 = argv[1];
 	data->file2 = argv[data->ac - 1];
 
@@ -54,7 +55,8 @@ void	get_cmds(t_data *data, char **argv)
 	{
 		if (argv[i] != data->file1 && argv[i] != data->file2)
 		{
-			printf("\n%s\n", argv[i]);
+			teste = argv[i];
+			printf("\n%s\n", teste);
 		}
 	}
 	//printf("%s\n", data->file2);
@@ -80,7 +82,7 @@ char	get_path(t_data *data, char **argv, char **env)
 
 	data->path = ft_split(str, ':');
 	get_cmds(data, argv);
-	//check_path_cmd1(data);
+	check_path_cmd1(data);
 	return(0);
 }
 
