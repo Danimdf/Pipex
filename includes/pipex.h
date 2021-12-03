@@ -10,11 +10,11 @@
 typedef struct s_data
 {
 	char	**path;
-	char	**cmd1;
-	char	**cmd2;
 	char	*path1;
 	char	*path2;
 	int		ac;
+	char	*file1;
+	char	*file2;
 	//char	*ev;
 } t_data;
 
@@ -22,6 +22,7 @@ int		main(int argc, char *argv[], char **envp);
 void	valid_params(t_data *data, char **argv, char **env);
 char	get_path(t_data *data, char **argv, char **env);
 char	check_path_cmd1(t_data *data);
+void get_cmds(t_data *data, char **argv);
 
 //utils
 int	ft_strncmp(const char *str1, const char *str2, size_t n);
