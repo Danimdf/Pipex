@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:50:56 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/11/27 19:01:48 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/06 17:31:22 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ is the same =  “< infile grep a1 | wc -w > outfile” */
 
 }*/
 
-/*void	child_execution(int fd)
+/* void	child_execution1(int fd)
 {
-	dup2(fd[1]), STDOUT_FILENO);
 	close(fd[0]);
+	if (dup2(fd[1]), STDOUT_FILENO) < 0)
+		perror("Dup2 Not Found");
+	close(fd[1])
+
 	close(fd[1]);
-}
+} */
 
 
 int this_pipex(t_data *data)
@@ -34,35 +37,23 @@ int this_pipex(t_data *data)
 	int	pid2;
 
 	if (pipe(fd) == -1)
-		return (1);
-	pid1 = fork();
-	if (pid1 == -1)
-		return (1);
+		return (-1);
 	pid1 = fork();
 	if (pid1 < 0)
-	{
-		perror("Error");
-	}
+		perror ("Fork failed!\n");
 	if (pid1 == 0)
 	{
-		child_execution(fd[2]);
+		//child_execution1(fd[2]);
 	}
 	pid2 = fork();
 	if(pid2 < 0)
-	{
-		perror("ERROR");
-	}
-
+		perror("Fork Not Found!");
 	if (pid2 == 0)
 	{
-		dup2(fd[0], STDIN_FILENO);
-		close(fd[0]);
-		close(fd[1]);
+		//child_execution2(fd[2]);
 	}
-	close(fd[0]);
-	close(fd[1]);
 	//parent_execution(data);
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
+	//waitpid(pid1, NULL, 0);
+	//waitpid(pid2, NULL, 0);
 	return(0);
-}*/
+}
