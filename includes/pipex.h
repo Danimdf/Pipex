@@ -3,6 +3,7 @@
 
 # include <stddef.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <unistd.h>
 # include <sys/wait.h>
 # include <stdlib.h>
@@ -10,20 +11,25 @@
 typedef struct s_data
 {
 	char	**path;
-	char	*path1;
-	char	*path2;
+	char	**cmd1;
+	char	**cmd2;
 	int		ac;
+	char	**av;
 	char	*file1;
 	char	*file2;
+	int		file_in;
+	int		file_out;
 	char	*multi_cmds;
+	int		fd[2];
 	//char	*ev;
 } t_data;
 
 int		main(int argc, char *argv[], char **envp);
 void	valid_params(t_data *data, char **argv, char **env);
 char	get_path(t_data *data, char **argv, char **env);
-void	check_path_cmd1(t_data *data);
+void	check_path_cmd1(char *cmd, t_data *data);
 void	get_cmds(t_data *data, char **argv);
+int	this_pipex(t_data *data);
 
 //utils
 int		ft_strncmp(const char *str1, const char *str2, size_t n);

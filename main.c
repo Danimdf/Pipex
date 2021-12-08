@@ -6,14 +6,14 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/03 20:22:53 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/07 21:48:24 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/pipex.h"
 
 
-void	check_path_cmd1(t_data *data)
+/* void	check_path_cmd1(char *cmd, t_data *data)
 {
 	//Get path of comand 1
 	//char *temp;
@@ -30,7 +30,7 @@ void	check_path_cmd1(t_data *data)
 
 		//printf("\n%s\n", temp);
 	}
-		/* if (access(temp1, F_OK) == 0)
+		 if (access(temp1, F_OK) == 0)
 		{
 			data->path1 = ft_strdup(temp1);
 			//free(temp);
@@ -43,10 +43,10 @@ void	check_path_cmd1(t_data *data)
 		i++;
 	}
 	//perror("\nInvalids comands. Please check a line command is: ./pipex file1 cmd1 cmd2 file2\n");
-	return (0);*/
+	return (0);
 }
-
-void	get_cmds(t_data *data, char **argv)
+ */
+/* void	get_cmds(t_data *data, char **argv)
 {
 	int i;
 	data->file1 = argv[1];
@@ -58,10 +58,10 @@ void	get_cmds(t_data *data, char **argv)
 		if (argv[i] != data->file1 && argv[i] != data->file2 && argv[i] != NULL)
 		{
 			data->multi_cmds = argv[i];
-			//printf("\n%s\n", data->multi_cmds);
+			printf("\n%s\n", data->multi_cmds);
 		}
 	}
-}
+} */
 
 char	get_path(t_data *data, char **argv, char **env)
 {
@@ -78,7 +78,10 @@ char	get_path(t_data *data, char **argv, char **env)
 		i++;
 	}
 	data->path = ft_split(str, ':');
-	get_cmds(data, argv);
+	data->cmd1 = ft_split(argv[2], ' ');
+	printf("\n%s\n", *data->cmd1);
+	data->cmd2 = ft_split(argv[3], ' ');
+	//get_cmds(data, argv);
 	return(0);
 }
 
@@ -86,7 +89,7 @@ void	valid_params(t_data *data, char **argv, char **env)
 {
 	if (data->ac != 5)
 		perror("\nnumber of parameters is incorrect\n");
-	else{);
+	else{
 		get_path(data, argv, env);
 	}
 }
@@ -95,8 +98,9 @@ int main(int argc, char **argv, char **env)
 {
 	t_data data;
 	data.ac = argc;
+	data.av = argv;
 
 	valid_params(&data, argv, env);
-	this_pipe(data);
+	this_pipex(&data);
 	return (0);
 }
