@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:50:56 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/07 21:49:32 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:58:15 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,29 @@
 /* input = ./pipex infile "grep a1" "wc -w" outfile
 is the same =  “< infile grep a1 | wc -w > outfile” */
 
-/*void	child_execution_2(t_data *data)
+void	child_execution_2(t_data *data)
 {
-	close(data->fd1[0]);
-	close(data->fd2[1]);
-}*/
+
+
+	data->file_out = open(data->file2, O_RDWR | O_CREAT | O_TRUNC, 0644);
+	close(data->fd[0]);
+	close(data->fd[1]);
+	if (dup2(data->fd[0], STDIN_FILENO) < 0)
+	{
+		perror("Dup2 not found!");
+	}
+	if (dup2(data->file_out, STDOUT_FILENO) < 0)
+	{
+		perror("Dup2 not found!");
+	}
+	//printf("\n%s\n", data->)
+	//if (data->file_in == -1)
+		//perror("Dup2 not found!");
+
+	//check_path_cmd1(data->av[2], data);
+	execve(data->path2, data->cmd2, data->ev);
+}
+
 
 void	child_execution_1(t_data *data)
 {
@@ -29,9 +47,12 @@ void	child_execution_1(t_data *data)
 	close(data->fd[0]);
 	close(data->fd[1]);
 	data->file_in = open(data->file1, O_RDONLY);
-	if (data->file_in == -1)
-		perror("Dup2 not found!");
+	//printf("\n%s\n", data->)
+	//if (data->file_in == -1)
+		//perror("Dup2 not found!");
+
 	//check_path_cmd1(data->av[2], data);
+	execve(data->path1, data->cmd1, data->ev);
 }
 
 
