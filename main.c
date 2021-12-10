@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/08 22:11:31 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/09 21:52:03 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ void	check_path_cmd2(t_data *data)
 		 if (access(temp1, F_OK) == 0)
 		{
 			data->path2 = ft_strdup(temp1);
-
-			//printf ("%s\n", data->path2);
+			printf("\n%s\n", data->path2);
+			break;
 		}
-		free(temp);
-		free(temp1);
 		//free(temp);
 		//free(temp1);
 	}
@@ -59,6 +57,7 @@ void	check_path_cmd1(t_data *data)
 		//printf("\n%s\n", data->path[i]);
 		temp = ft_strjoin(data->path[i], "/");
 		//printf("\n%s\n", temp);
+		//data->cmd1 = ft_split(*data->cmd1, " ");
 		temp1 = ft_strjoin(temp, *data->cmd1);
 
 		//printf("\n%s\n", temp1);
@@ -68,12 +67,11 @@ void	check_path_cmd1(t_data *data)
 		 if (access(temp1, F_OK) == 0)
 		{
 			data->path1 = ft_strdup(temp1);
-
+			printf("\n%s\n", data->path1);
+			break;
 			//return (data->path1);
-			//printf ("%s\n", data->path1);
+			printf ("%s\n", data->path1);
 		}
-		free(temp);
-		free(temp1);
 		//free(temp);
 		//free(temp1);
 	}
@@ -84,13 +82,12 @@ void	check_path_cmd1(t_data *data)
 {
 	int i;
 	//char *teste[2];
-	data->file1 = argv[1];
-	data->file2 = argv[data->ac - 1];
+
 
 	i = 0;
 	while (argv[i++])
 	{
-		if (argv[i] != data->file1 && argv[i] != data->file2 && argv[i] != NULL)
+		if (argv[i] != data->file1 && argv[i] != data->file2)
 		{
 			data->multi_cmds = argv[i];
 			//printf("\n%s\n", data->multi_cmds);
@@ -103,6 +100,8 @@ char	get_path(t_data *data, char **argv, char **env)
 {
 	int i;
 	char *str;
+	data->file1 = argv[1];
+	data->file2 = argv[data->ac - 1];
 
 	i = 0;
 	str = "";
@@ -115,9 +114,10 @@ char	get_path(t_data *data, char **argv, char **env)
 	}
 	data->path = ft_split(str, ':');
 	data->cmd1 = ft_split(argv[2], ' ');
+	//printf("\n%s\n", argv[2]);
 
 	data->cmd2 = ft_split(argv[3], ' ');
-	//printf("\n%s\n", *data->cmd2);
+	//printf("\n%s\n", data->cmd1[0]);
 	//get_cmds(data, argv);
 	check_path_cmd1(data);
 	check_path_cmd2(data);
