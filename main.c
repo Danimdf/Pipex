@@ -6,13 +6,13 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/10 20:08:28 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/13 09:09:18 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/pipex.h"
 
-void	check_path_cmd2(t_data *data)
+int	check_path_cmd2(t_data *data)
 {
 	//Get path of comand 2
 	char *temp;
@@ -20,6 +20,7 @@ void	check_path_cmd2(t_data *data)
 	int	i;
 
 	i = 0;
+	data->check_cmd = 0;
 	//printf("oiii");
 	while (data->path[++i])
 	{
@@ -35,15 +36,21 @@ void	check_path_cmd2(t_data *data)
 		 if (access(temp1, F_OK) == 0)
 		{
 			data->path2 = ft_strdup(temp1);
+			data->check_cmd = 1;
 			//printf("\n%s\n", data->path2);
 			break;
 		}
 		free(temp);
 		free(temp1);
 	}
+	if (data->check_cmd == 0) {
+		perror("Command 2 not found!");
+		exit(EXIT_FAILURE);
+	}
+	return (0);
 }
 
-void	check_path_cmd1(t_data *data)
+int	check_path_cmd1(t_data *data)
 {
 	//Get path of comand 1
 	char *temp;
@@ -51,6 +58,7 @@ void	check_path_cmd1(t_data *data)
 	int	i;
 
 	i = 0;
+	data->check_cmd = 0;
 	//printf("oiii");
 	while (data->path[++i])
 	{
@@ -67,16 +75,22 @@ void	check_path_cmd1(t_data *data)
 		 if (access(temp1, F_OK) == 0)
 		{
 			data->path1 = ft_strdup(temp1);
-			printf("\n%s\n", data->path1);
+			//printf("\n%s\n", data->path1);
+			data->check_cmd = 1;
 			break;
 			//return (data->path1);
 			//printf ("%s\n", data->path1);
 
 		}
+
 		free(temp);
 		free(temp1);
 	}
-	//perror("\nInvalids comands. Please check a line command is: ./pipex file1 cmd1 cmd2 file2\n");
+	if (data->check_cmd == 0) {
+		perror("Comand 1 not found!");
+		exit(EXIT_FAILURE);
+	}//perror("\nInvalids comands. Please check a line command is: ./pipex file1 cmd1 cmd2 file2\n");
+	return (0);
 }
 
 /* void	get_cmds(t_data *data, char **argv)
@@ -129,7 +143,7 @@ void	valid_params(t_data *data, char **argv, char **env)
 {
 	if (data->ac != 5)
 		perror("\nnumber of parameters is incorrect\n");
-	else{
+	else {
 		get_path(data, argv, env);
 	}
 }
