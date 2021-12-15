@@ -4,7 +4,6 @@ main.c
 main.o
 makefile
 pipex
-PIPEXaminator
 README.md
 source
 utils

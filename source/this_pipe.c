@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:50:56 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/14 20:10:37 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/15 08:40:03 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ is the same =  “< infile grep a1 | wc -w > outfile” */
 
 int	child_execution_2(t_data *data)
 {
+	int	i;
+
 	data->file_out = open(data->file2, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (data->file_out < 0)
 	{
@@ -34,9 +36,14 @@ int	child_execution_2(t_data *data)
 		exit(EXIT_FAILURE);
 	}
 	close(data->fd[0]);
-	if(execve(data->path2, data->cmd2, data->ev) == -1)
+	i = 0;
+	while(data->cmd2)
 	{
-		perror("Exec 2 failed!");
+		if(execve(data->path2, &data->cmd2[i++], data->ev) == -1)
+		{
+			perror("Exec 2 failed!");
+			exit(EXIT_FAILURE);
+		}
 	}
 	return (0);
 }
@@ -44,6 +51,8 @@ int	child_execution_2(t_data *data)
 
 int	child_execution_1(t_data *data)
 {
+	int	i;
+
 	close(data->fd[0]);
 	if (dup2(data->fd[1], STDOUT_FILENO) < 0)
 	{
@@ -61,10 +70,16 @@ int	child_execution_1(t_data *data)
 		perror("Dup2 not found!");
 		exit(EXIT_FAILURE);
 	}
-	if (execve(data->path1, data->cmd1, data->ev) == -1)
+	i = 0;
+	while(data->cmd1)
 	{
-		perror("Exec 1 failed!");
+		if(execve(data->path2, &data->cmd1[i++], data->ev) == -1)
+		{
+			perror("Exec 1 failed!");
+			exit(EXIT_FAILURE);
+		}
 	}
+	free(data->cmd1);
 	return (0);
 }
 

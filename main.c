@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/14 19:59:29 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/15 08:37:51 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_path_cmd2(t_data *data)
 		temp = ft_strjoin(data->path[i], "/");
 		//printf("\n%s\n", temp);
 		temp1 = ft_strjoin(temp, *data->cmd2);
-
+		//printf("\n%s\n", temp1);
 		//printf("\n%s\n", temp1);
 		 if (access(temp1, X_OK) == 0)
 		{
@@ -69,7 +69,6 @@ int	check_path_cmd1(t_data *data)
 		 if (!access(temp1, F_OK))
 		{
 			data->path1 = ft_strdup(temp1);
-			printf("\n%s\n", temp1);
 			data->check_cmd = 1;
 			break;
 		}
@@ -77,7 +76,7 @@ int	check_path_cmd1(t_data *data)
 		free(temp1);
 	}
 	if (data->check_cmd == 0) {
-		perror("Comand 1 not found!");
+		perror("Command 1 not found!");
 		return (1);
 	}//perror("\nInvalids comands. Please check a line command is: ./pipex file1 cmd1 cmd2 file2\n");
 	return (0);
@@ -119,7 +118,9 @@ char	get_path(t_data *data, char **argv, char **env)
 	data->path = ft_split(str, ':');
 	data->cmd1 = ft_split(argv[2], ' ');
 
+
 	data->cmd2 = ft_split(argv[3], ' ');
+	//printf("\n%s\n", data->cmd2[1]);
 	check_path_cmd1(data);
 	check_path_cmd2(data);
 	return(0);
