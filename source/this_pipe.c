@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:50:56 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/17 21:50:29 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/17 23:43:14 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ is the same =  “< infile grep a1 | wc -w > outfile” */
 
 int	child_execution_2(t_data *data)
 {
-	int	i;
-
 	data->file_out = open(data->file2, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (data->file_out < 0)
 	{
@@ -35,16 +33,14 @@ int	child_execution_2(t_data *data)
 		perror("Dup2 not found!");
 		exit(EXIT_FAILURE);
 	}
-	printf("oii");
+	//printf("oii");
+	//dprintf(2, "\n$$$oiii222$$$\n");
 	close(data->fd[0]);
-	i = 0;
-	while(data->cmd2)
+
+	if(execve(data->path2, data->cmd2, data->ev) == -1)
 	{
-		if(execve(data->path2, &data->cmd2[i++], data->ev) == -1)
-		{
-			perror("Exec 2 failed!");
-			exit(EXIT_FAILURE);
-		}
+		perror("Exec 2 failed!");
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }
@@ -52,13 +48,6 @@ int	child_execution_2(t_data *data)
 
 int	child_execution_1(t_data *data)
 {
-	int	i;
-
-
-
-
-	check_file(data);
-
 	close(data->fd[0]);
 	if (dup2(data->fd[1], STDOUT_FILENO) < 0)
 	{
@@ -76,40 +65,43 @@ int	child_execution_1(t_data *data)
 		perror("Dup2 not found!");
 		exit(EXIT_FAILURE);
 	}
-	i = 0;
-	while(data->cmd1)
+	//dprintf(2, "\n$$$oiii111$$$\n");
+	//dprintf(2, "\n$$$%s$$$\n", argv[2]);
+	//dprintf(2, "\n$$$%s$$$\n", data->cmd1[0]);
+	if(execve(data->path1, data->cmd1, data->ev) == -1)
 	{
-		if(execve(data->path2, &data->cmd1[i++], data->ev) == -1)
-		{
-			perror("Exec 1 failed!");
-			exit(EXIT_FAILURE);
-		}
+		//printf("gatinho");
+		perror("Exec 1 failed!");
+		exit(EXIT_FAILURE);
 	}
-	free(data->cmd1);
 	return (0);
 }
 
 int	check_file(t_data *data)
 {
-	 data->file_in = open(data->file1, O_RDONLY);
-	 data->file_out = open(data->file2, O_CREAT, 0644);
-	 write(data->file_in, "0", 1);
-	 if (data->file_in < 0)
-	 {
+	data->file_in = open(data->file1, O_RDONLY);
+
+
+	if (data->file_in < 0)
+	{
 		perror("ERROR file!");
 		exit(EXIT_FAILURE);
-	 }
-	 close(data->file_in);
-	 close(data->file_out);
-	 return (0);
+	}
+	write(data->file_in, "0", 1);
+	data->file_out = open(data->file2, O_CREAT, 0644);
+	close(data->file_in);
+	close(data->file_out);
+	return (0);
 }
 
 int this_pipex(t_data *data)
 {
 	int	pid1;
 	int	pid2;
+	int status_code;
 
-
+	status_code = 0;
+	check_file(data);
 	if (pipe(data->fd) < 0)
 		perror("Pipe not found!");
 	pid1 = fork();
@@ -117,15 +109,27 @@ int this_pipex(t_data *data)
 		perror ("Fork 1 failed!\n");
 	if (pid1 == 0)
 	{
-		printf("oii");
+		//printf("oii");
 		child_execution_1(data);
 	}
+	waitpid(pid1, &status_code, 0);
 
 	pid2 = fork();
 	if(pid2 < 0)
 		perror("Fork 2 Not Found!");
 	if (pid2 == 0)
 		child_execution_2(data);
-	waitpid(-1, NULL, 0);
-	return(0);
+
+
+	close(data->fd[1]);
+	waitpid(pid2, &status_code, 0);
+	//wait espera que retorna
+	//Se deu problema e deu exit
+	if (WIFEXITED(status_code))
+	//checa o programa se deu exit
+		status_code = WEXITSTATUS(status_code);
+		//ai pega o codigo de exit e converte ele
+
+	//dprintf(2, "\n%d\n", status_code);
+	return(status_code);
 }

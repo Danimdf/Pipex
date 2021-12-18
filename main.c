@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/17 21:51:52 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/17 23:14:39 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,10 @@ char	get_path(t_data *data, char **argv, char **env)
 	data->cmd1 = ft_split(argv[2], ' ');
 
 
-	data->cmd2 = ft_split(argv[3], ' ');
-	//printf("\n%s\n", data->cmd2[1]);
+	data->cmd2 = ft_split(argv[3], ' ');/*
+	dprintf(2, "\n$$$%s$$$\n", argv[2]);
+	printf("\n$$$%s$$$\n", data->cmd1[2]); */
+
 	check_path_cmd1(data);
 	check_path_cmd2(data);
 	return(0);
@@ -146,6 +148,5 @@ int main(int argc, char **argv, char **env)
 	data.ev = env;
 
 	valid_params(&data, argv, env);
-	this_pipex(&data);
-	return (0);
+	return (this_pipex(&data));
 }
