@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/27 19:08:29 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/27 19:09:42 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,6 @@ void free_all (t_data *data)
 	free_ptr(data->cmd2);
 	free(data->path1);
 	free(data->path2);
-	//free(data->ev);
-	//free(data->av);
-	//free(data->file_in);
-	//free(data->file_out);
-	//free(data->fd);
-	//free_ptr(data->ev);
-	//free_ptr(data->av);
-	//free(data->file1);
-	//free(data->file2);
 }
 
 

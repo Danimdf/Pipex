@@ -22,7 +22,6 @@ typedef struct s_data
 	int		file_in;
 	int		file_out;
 	int		check_cmd;
-	//char	*multi_cmds;
 	int		fd[2];
 	char	**ev;
 } t_data;

@@ -6,13 +6,11 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:50:56 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/27 18:27:41 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/27 19:10:11 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-/* input = ./pipex infile "grep a1" "wc -w" outfile
-is the same =  “< infile grep a1 | wc -w > outfile” */
 
 int	child_execution_2(t_data *data)
 {
