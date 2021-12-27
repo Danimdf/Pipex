@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:50:56 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/17 23:43:14 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/27 18:27:41 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ int	child_execution_2(t_data *data)
 		perror("Dup2 not found!");
 		exit(EXIT_FAILURE);
 	}
-	//printf("oii");
-	//dprintf(2, "\n$$$oiii222$$$\n");
 	close(data->fd[0]);
+
 
 	if(execve(data->path2, data->cmd2, data->ev) == -1)
 	{
@@ -65,12 +64,8 @@ int	child_execution_1(t_data *data)
 		perror("Dup2 not found!");
 		exit(EXIT_FAILURE);
 	}
-	//dprintf(2, "\n$$$oiii111$$$\n");
-	//dprintf(2, "\n$$$%s$$$\n", argv[2]);
-	//dprintf(2, "\n$$$%s$$$\n", data->cmd1[0]);
 	if(execve(data->path1, data->cmd1, data->ev) == -1)
 	{
-		//printf("gatinho");
 		perror("Exec 1 failed!");
 		exit(EXIT_FAILURE);
 	}
@@ -80,8 +75,6 @@ int	child_execution_1(t_data *data)
 int	check_file(t_data *data)
 {
 	data->file_in = open(data->file1, O_RDONLY);
-
-
 	if (data->file_in < 0)
 	{
 		perror("ERROR file!");
@@ -108,20 +101,15 @@ int this_pipex(t_data *data)
 	if (pid1 < 0)
 		perror ("Fork 1 failed!\n");
 	if (pid1 == 0)
-	{
-		//printf("oii");
 		child_execution_1(data);
-	}
 	waitpid(pid1, &status_code, 0);
-
 	pid2 = fork();
 	if(pid2 < 0)
 		perror("Fork 2 Not Found!");
 	if (pid2 == 0)
 		child_execution_2(data);
-
-
 	close(data->fd[1]);
+
 	waitpid(pid2, &status_code, 0);
 	//wait espera que retorna
 	//Se deu problema e deu exit
@@ -130,6 +118,7 @@ int this_pipex(t_data *data)
 		status_code = WEXITSTATUS(status_code);
 		//ai pega o codigo de exit e converte ele
 
+	free_all(data);
 	//dprintf(2, "\n%d\n", status_code);
 	return(status_code);
 }

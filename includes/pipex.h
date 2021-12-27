@@ -35,6 +35,8 @@ void	get_cmds(t_data *data, char **argv);
 int		this_pipex(t_data *data);
 int		check_path_cmd2(t_data *data);
 int		check_file(t_data *data);
+void	free_all (t_data *data);
+void free_ptr (char **ptr);
 
 //utils
 int		ft_strncmp(const char *str1, const char *str2, size_t n);

@@ -6,11 +6,43 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/17 23:14:39 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/27 18:31:29 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/pipex.h"
+
+
+void free_ptr (char **ptr)
+{
+	int i;
+
+	i = 0;
+	while (ptr[i])
+	{
+		free(ptr[i++]);
+	}
+	free(ptr);
+}
+
+void free_all (t_data *data)
+{
+	free_ptr(data->path);
+	free_ptr(data->cmd1);
+	free_ptr(data->cmd2);
+	free(data->path1);
+	free(data->path2);
+	free(data->ev);
+	free(data->av);
+	//free(data->file_in);
+	//free(data->file_out);
+	free(data->fd);
+	//free_ptr(data->ev);
+	//free_ptr(data->av);
+	free(data->file1);
+	free(data->file2);
+}
+
 
 int	check_path_cmd2(t_data *data)
 {
@@ -21,22 +53,14 @@ int	check_path_cmd2(t_data *data)
 
 	i = 0;
 	data->check_cmd = 0;
-	//printf("oiii");
 	while (data->path[++i])
 	{
-		//printf("\n%s\n", data->path[i]);
 		temp = ft_strjoin(data->path[i], "/");
-		//printf("\n%s\n", temp);
 		temp1 = ft_strjoin(temp, *data->cmd2);
-		//printf("\n%s\n", temp1);
-		//printf("\n%s\n", temp1);
 		 if (access(temp1, X_OK) == 0)
 		{
 			data->path2 = ft_strdup(temp1);
-
 			data->check_cmd = 1;
-
-			//printf("\n%s\n", data->path2);
 			break;
 		}
 		free(temp);
@@ -58,13 +82,9 @@ int	check_path_cmd1(t_data *data)
 
 	i = 0;
 	data->check_cmd = 0;
-	//printf("oiii");
 	while (data->path[++i])
 	{
-		//printf("\n%s\n", data->path[i]);
 		temp = ft_strjoin(data->path[i], "/");
-		//printf("\n%s\n", temp);
-		//data->cmd1 = ft_split(*data->cmd1, " ");
 		temp1 = ft_strjoin(temp, *data->cmd1);
 		 if (!access(temp1, F_OK))
 		{
@@ -78,7 +98,7 @@ int	check_path_cmd1(t_data *data)
 	if (data->check_cmd == 0) {
 		perror("Command 1 not found!");
 		return (1);
-	}//perror("\nInvalids comands. Please check a line command is: ./pipex file1 cmd1 cmd2 file2\n");
+	}
 	return (0);
 }
 
@@ -117,11 +137,7 @@ char	get_path(t_data *data, char **argv, char **env)
 	}
 	data->path = ft_split(str, ':');
 	data->cmd1 = ft_split(argv[2], ' ');
-
-
-	data->cmd2 = ft_split(argv[3], ' ');/*
-	dprintf(2, "\n$$$%s$$$\n", argv[2]);
-	printf("\n$$$%s$$$\n", data->cmd1[2]); */
+	data->cmd2 = ft_split(argv[3], ' ');
 
 	check_path_cmd1(data);
 	check_path_cmd2(data);
