@@ -6,14 +6,13 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:50:56 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/27 19:10:11 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/28 14:57:08 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	child_execution_2(t_data *data)
-{
+int	child_execution_2(t_data *data) {
 	data->file_out = open(data->file2, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (data->file_out < 0)
 	{
@@ -43,8 +42,7 @@ int	child_execution_2(t_data *data)
 }
 
 
-int	child_execution_1(t_data *data)
-{
+int	child_execution_1(t_data *data) {
 	close(data->fd[0]);
 	if (dup2(data->fd[1], STDOUT_FILENO) < 0)
 	{
@@ -70,8 +68,7 @@ int	child_execution_1(t_data *data)
 	return (0);
 }
 
-int	check_file(t_data *data)
-{
+int	check_file(t_data *data) {
 	data->file_in = open(data->file1, O_RDONLY);
 	if (data->file_in < 0)
 	{
@@ -85,8 +82,7 @@ int	check_file(t_data *data)
 	return (0);
 }
 
-int this_pipex(t_data *data)
-{
+int this_pipex(t_data *data) {
 	int	pid1;
 	int	pid2;
 	int status_code;
@@ -117,6 +113,6 @@ int this_pipex(t_data *data)
 		//ai pega o codigo de exit e converte ele
 
 	free_all(data);
-	//dprintf(2, "\n%d\n", status_code);
+	free_path(data);
 	return(status_code);
 }
