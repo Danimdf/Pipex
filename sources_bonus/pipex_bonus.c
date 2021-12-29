@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/29 19:16:08 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/29 19:20:07 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ int init_pipex(t_data *data, int argc, char **argv, char **env) {
 		data->multi_cmds[i] = argv[i + 2];
 		i++;
 	}
-	printf("\n%s\n", data->multi_cmds[1]);
+	printf("\n%s\n", data->multi_cmds[3]);
 
 	return (0);
 }
