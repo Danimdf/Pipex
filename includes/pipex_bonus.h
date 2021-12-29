@@ -1,5 +1,5 @@
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <stddef.h>
 # include <stdio.h>
@@ -13,14 +13,13 @@ typedef struct s_data
 	char	**path;
 	char	*path1;
 	char	*path2;
-	char	**cmd1;
-	char	**cmd2;
 	int		ac;
 	char	**av;
 	char	*file1;
 	char	*file2;
 	int		file_in;
 	int		file_out;
+	char	**multi_cmds;
 	int		check_cmd;
 	int		fd[2];
 	char	**ev;
@@ -29,13 +28,14 @@ typedef struct s_data
 int		main(int argc, char *argv[], char **envp);
 void	valid_params(t_data *data, char **argv, char **env);
 char	get_path(t_data *data, char **argv, char **env);
-int		check_path_cmd1(t_data *data);
+void	get_cmds(t_data *data, char **argv);
+/* int		check_path_cmd1(t_data *data);
 int		this_pipex(t_data *data);
 int		check_path_cmd2(t_data *data);
 int		check_file(t_data *data);
 void	free_all (t_data *data);
 void	free_ptr (char **ptr);
-void	free_path(t_data *data);
+void	free_path(t_data *data); */
 
 //utils
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
