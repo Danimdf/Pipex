@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/29 17:42:43 by dmonteir         ###   ########.fr       */
+/*   Updated: 2021/12/29 19:16:08 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,11 @@ int	check_path_cmd1(t_data *data) {
 	}
 	return (0);
 } */
-
+/*
 void	get_cmds(t_data *data, char **argv)
 {
 	int i;
+	char *temp;
 	//char *teste[2];
 
 	//printf("oiii\n");
@@ -109,18 +110,18 @@ void	get_cmds(t_data *data, char **argv)
 	{
 		if (argv[i] != data->file1 && argv[i] != data->file2)
 		{
-			data->multi_cmds = &argv[i];
+			temp = (argv[i]);
+			data->multi_cmds = ft_strdup(temp);
 			printf("\n%s\n", *data->multi_cmds);
 		}
 	}
-	printf("\n%s\n", *data->multi_cmds);
-}
+	//printf("\n%s\n", *data->multi_cmds);
+} */
 
-char	get_path(t_data *data, char **argv, char **env) {
+char	get_path(t_data *data, char **env) {
 	int i;
 	char *str;
-	data->file1 = argv[1];
-	data->file2 = argv[data->ac - 1];
+
 
 	i = 0;
 	str = "";
@@ -132,7 +133,7 @@ char	get_path(t_data *data, char **argv, char **env) {
 	}
 	data->path = ft_split(str, ':');
 	free(str);
-	get_cmds(data, argv);
+	//get_cmds(data, argv);
 	//data->cmd1 = ft_split(argv[2], ' ');
 	//data->cmd2 = ft_split(argv[3], ' ');
 
@@ -141,22 +142,47 @@ char	get_path(t_data *data, char **argv, char **env) {
 	return(0);
 }
 
-void	valid_params(t_data *data, char **argv, char **env) {
+void	valid_params(t_data *data, char **env) {
 	if (data->ac < 5) {
 		perror("\nnumber of parameters is incorrect\n");
 		exit(EXIT_SUCCESS);
 	}
 	else {
-		get_path(data, argv, env);
+		get_path(data, env);
 	}
+}
+
+int init_pipex(t_data *data, int argc, char **argv, char **env) {
+	int i;
+
+	data->ac = argc;
+	data->av = argv;
+	data->ev = env;
+	data->file1 = argv[1];
+	data->file2 = argv[data->ac - 1];
+	data->count_cmds = argc - 3;
+	data->multi_cmds = malloc(data->count_cmds * sizeof(char *));
+	i = 0;
+
+	//printf("\noi");
+
+	while(i < data->count_cmds)
+	{
+		//printf("oi");
+		data->multi_cmds[i] = malloc(ft_strlen(argv[i + 2]) * sizeof(char));
+		data->multi_cmds[i] = argv[i + 2];
+		i++;
+	}
+	printf("\n%s\n", data->multi_cmds[1]);
+
+	return (0);
 }
 
 int main(int argc, char **argv, char **env) {
 	t_data data;
-	data.ac = argc;
-	data.av = argv;
-	data.ev = env;
 
-	valid_params(&data, argv, env);
+	printf("%d", argc);
+	init_pipex(&data, argc, argv, env);
+	valid_params(&data, env);
 	//return (this_pipex(&data));
 }

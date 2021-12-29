@@ -19,6 +19,7 @@ typedef struct s_data
 	char	*file2;
 	int		file_in;
 	int		file_out;
+	int		count_cmds;
 	char	**multi_cmds;
 	int		check_cmd;
 	int		fd[2];
@@ -26,9 +27,10 @@ typedef struct s_data
 } t_data;
 
 int		main(int argc, char *argv[], char **envp);
-void	valid_params(t_data *data, char **argv, char **env);
-char	get_path(t_data *data, char **argv, char **env);
-void	get_cmds(t_data *data, char **argv);
+void	valid_params(t_data *data, char **env);
+char	get_path(t_data *data, char **env);
+//void	get_cmds(t_data *data, char **argv);
+int		init_pipex(t_data *data, int argc, char **argv, char **env);
 /* int		check_path_cmd1(t_data *data);
 int		this_pipex(t_data *data);
 int		check_path_cmd2(t_data *data);
