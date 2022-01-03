@@ -6,12 +6,12 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:50:56 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/29 17:21:54 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/03 18:27:19 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
-/*
+
 int	child_execution_2(t_data *data) {
 	data->file_out = open(data->file2, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (data->file_out < 0)
@@ -43,6 +43,8 @@ int	child_execution_2(t_data *data) {
 
 
 int	child_execution_1(t_data *data) {
+	char	**cmd;
+
 	close(data->fd[0]);
 	if (dup2(data->fd[1], STDOUT_FILENO) < 0)
 	{
@@ -60,6 +62,7 @@ int	child_execution_1(t_data *data) {
 		perror("Dup2 not found!");
 		exit(EXIT_FAILURE);
 	}
+	//cmd = get_cmd(data);
 	if(execve(data->path1, data->cmd1, data->ev) == -1)
 	{
 		perror("Exec 1 failed!");
@@ -115,4 +118,4 @@ int this_pipex(t_data *data) {
 	free_all(data);
 	free_path(data);
 	return(status_code);
-} */
+}

@@ -6,7 +6,7 @@
 #    By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/19 16:52:46 by dmonteir          #+#    #+#              #
-#    Updated: 2021/12/29 17:36:53 by dmonteir         ###   ########.fr        #
+#    Updated: 2021/12/31 06:24:41 by dmonteir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,17 +35,17 @@ OBJS_BONUS = $(FILES_BONUS:.c=.o)
 
 all:		$(NAME) $(INCLUDE)
 
-$(NAME):	${OBJS} ${OBJS_UTILS}
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) ${OBJS_UTILS}
+$(NAME):	$(OBJS) $(OBJS_UTILS)
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(OBJS_UTILS)
 
-bonus:		${OBJS_BONUS} ${OBJS_UTILS}
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS_BONUS) ${OBJS_UTILS}
+bonus:		$(OBJS_BONUS) $(OBJS_UTILS)
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJS_BONUS) $(OBJS_UTILS)
 
 clean:
 			$(RM) $(OBJS)
 
 fclean:
-			${RM} ${NAME} $(OBJS)
+			$(RM) $(NAME) $(OBJS)
 
 re:			fclean all
 

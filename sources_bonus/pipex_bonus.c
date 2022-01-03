@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/29 19:20:07 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/03 18:40:24 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	check_path_cmd2(t_data *data) {
 	return (0);
 }
 
+
 int	check_path_cmd1(t_data *data) {
 	//Get path of comand 1
 	char *ptr_path;
@@ -97,30 +98,30 @@ int	check_path_cmd1(t_data *data) {
 	}
 	return (0);
 } */
-/*
-void	get_cmds(t_data *data, char **argv)
-{
-	int i;
-	char *temp;
-	//char *teste[2];
 
-	//printf("oiii\n");
+/* int	split_cmd(t_data *data) {
+	int i;
+
 	i = 0;
-	while (argv[i++])
-	{
-		if (argv[i] != data->file1 && argv[i] != data->file2)
-		{
-			temp = (argv[i]);
-			data->multi_cmds = ft_strdup(temp);
-			printf("\n%s\n", *data->multi_cmds);
-		}
-	}
-	//printf("\n%s\n", *data->multi_cmds);
-} */
+	while(data->multi_cmds[i++]) {
+
+	} */
+
+char	**get_cmd(t_data *data)
+{
+	int	i;
+	char	*temp;
+	char	**cmd_path;
+	char	**cmd_splited;
+
+	i = 0;
+	temp = ft_strdup();
+}
+
 
 char	get_path(t_data *data, char **env) {
-	int i;
-	char *str;
+	int		i;
+	char	*str;
 
 
 	i = 0;
@@ -153,7 +154,7 @@ void	valid_params(t_data *data, char **env) {
 }
 
 int init_pipex(t_data *data, int argc, char **argv, char **env) {
-	int i;
+	int	i;
 
 	data->ac = argc;
 	data->av = argv;
@@ -179,10 +180,10 @@ int init_pipex(t_data *data, int argc, char **argv, char **env) {
 }
 
 int main(int argc, char **argv, char **env) {
-	t_data data;
+	t_data	data;
 
 	printf("%d", argc);
 	init_pipex(&data, argc, argv, env);
 	valid_params(&data, env);
-	//return (this_pipex(&data));
+	return (this_pipex(&data));
 }
