@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/29 17:09:44 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/06 07:43:46 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,6 @@ int	check_path_cmd2(t_data *data) {
 	free(temp1);
 	if (data->check_cmd == 0) {
 		perror("Command 2 not found!");
-		//free_ptr(data->path);
-		//free_ptr(data->cmd2);
-		//free(data->path2);
 		exit(127);
 	}
 	return (0);
@@ -98,24 +95,6 @@ int	check_path_cmd1(t_data *data) {
 	return (0);
 }
 
-/* void	get_cmds(t_data *data, char **argv)
-{
-	int i;
-	//char *teste[2];
-
-
-	i = 0;
-	while (argv[i++])
-	{
-		if (argv[i] != data->file1 && argv[i] != data->file2)
-		{
-			data->multi_cmds = argv[i];
-			//printf("\n%s\n", data->multi_cmds);
-		}
-	}
-	printf("\n%s\n", data->multi_cmds);
-}
- */
 char	get_path(t_data *data, char **argv, char **env) {
 	int i;
 	char *str;
