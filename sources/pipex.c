@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/06 07:43:46 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/06 07:44:54 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	check_path_cmd2(t_data *data) {
 	while (data->path[++i]) {
 		temp = ft_strjoin(data->path[i], "/");
 		temp1 = ft_strjoin(temp, *data->cmd2);
-		printf("%s\n", temp1);
 		if (!access(temp1, X_OK))
 		{
 			data->path2 = ft_strdup(temp1);
