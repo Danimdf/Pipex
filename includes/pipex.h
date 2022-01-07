@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 07:41:16 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/07 07:42:31 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/07 17:59:00 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,16 @@ void	valid_params(t_data *data, char **argv, char **env);
 char	get_path(t_data *data, char **argv, char **env);
 int		check_path_cmd1(t_data *data);
 int		check_path_cmd2(t_data *data);
-void	dup_path(t_data *data, char *ptr_path, char *temp1);
+char	*dup_path(t_data *data, char *ptr_path, char *temp1);
 int		this_pipex(t_data *data);
 int		check_file(t_data *data);
 int		child_execution_1(t_data *data);
 int		child_execution_2(t_data *data);
-void	fork_func(t_data *data, int pid1, int pid2);
+int		fork_func(t_data *data, int pid1, int pid2, int status_code);
 void	free_all(t_data *data);
 void	free_ptr(char **ptr);
 void	free_path(t_data *data);
+void	exit_free(t_data *data);
 
 //utils
 int		ft_strncmp(const char *str1, const char *str2, size_t n);

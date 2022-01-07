@@ -6,13 +6,13 @@
 #    By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/19 16:52:46 by dmonteir          #+#    #+#              #
-#    Updated: 2022/01/07 07:25:50 by dmonteir         ###   ########.fr        #
+#    Updated: 2022/01/07 17:46:28 by dmonteir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 INCLUDE = ./includes/pipex.h
 
 FILES =			./sources/pipex.c \
