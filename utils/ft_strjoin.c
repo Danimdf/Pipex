@@ -6,12 +6,11 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 17:39:28 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/12/02 20:09:31 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/07 07:43:57 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
@@ -81,4 +80,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strlcat(str + (s1_len), s2, s2_len + 1);
 	return (str);
 }
-

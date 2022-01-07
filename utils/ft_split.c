@@ -6,11 +6,11 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 14:12:59 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/11/26 17:01:28 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/07 07:44:51 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/pipex.h"
+#include "../includes/pipex.h"
 
 static size_t	count_words(const char *s, char c)
 {

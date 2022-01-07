@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   free_pipex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/20 22:53:27 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/07 07:43:37 by dmonteir         ###   ########.fr       */
+/*   Created: 2022/01/07 07:09:19 by dmonteir          #+#    #+#             */
+/*   Updated: 2022/01/07 07:12:40 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+void	free_ptr(char **ptr)
 {
-	size_t			i;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	int	i;
 
 	i = 0;
-	s1 = (unsigned char *)str1;
-	s2 = (unsigned char *)str2;
-	while (i < n && (s1[i] || s2[i]))
-	{
-		if (s1[i] != s2[i])
-		{
-			return (s1[i] - s2[i]);
-		}
-		i++;
-	}
-	return (0);
+	while (ptr[i])
+		free(ptr[i++]);
+	free(ptr);
+}
+
+void	free_path(t_data *data)
+{
+	free(data->path1);
+	free(data->path2);
+}
+
+void	free_all(t_data *data)
+{
+	free_ptr(data->path);
+	free_ptr(data->cmd1);
+	free_ptr(data->cmd2);
 }

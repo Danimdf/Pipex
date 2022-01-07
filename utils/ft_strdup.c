@@ -6,12 +6,11 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 21:46:41 by dmonteir          #+#    #+#             */
-/*   Updated: 2021/11/24 21:47:04 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/07 07:44:15 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-# include "../includes/pipex.h"
+#include "../includes/pipex.h"
 
 char	*ft_strdup(const char *str1)
 {

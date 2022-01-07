@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/20 22:53:27 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/07 07:43:37 by dmonteir         ###   ########.fr       */
+/*   Created: 2022/01/07 07:43:14 by dmonteir          #+#    #+#             */
+/*   Updated: 2022/01/07 07:43:28 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+void	*ft_calloc(size_t nitems, size_t size)
 {
-	size_t			i;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	char	*ptr;
+	size_t	i;
 
 	i = 0;
-	s1 = (unsigned char *)str1;
-	s2 = (unsigned char *)str2;
-	while (i < n && (s1[i] || s2[i]))
+	ptr = malloc(nitems * size);
+	if (ptr == 0)
+		return (NULL);
+	else
 	{
-		if (s1[i] != s2[i])
+		while (i < (nitems * size))
 		{
-			return (s1[i] - s2[i]);
+			ptr[i] = '\0';
+			i++;
 		}
-		i++;
+		return (ptr);
 	}
-	return (0);
 }

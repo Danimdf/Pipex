@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/07 07:41:16 by dmonteir          #+#    #+#             */
+/*   Updated: 2022/01/07 07:42:31 by dmonteir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PIPEX_H
 # define PIPEX_H
 
@@ -24,17 +36,21 @@ typedef struct s_data
 	int		check_cmd;
 	int		fd[2];
 	char	**ev;
-} t_data;
+}	t_data;
 
 int		main(int argc, char *argv[], char **envp);
 void	valid_params(t_data *data, char **argv, char **env);
 char	get_path(t_data *data, char **argv, char **env);
 int		check_path_cmd1(t_data *data);
-int		this_pipex(t_data *data);
 int		check_path_cmd2(t_data *data);
+void	dup_path(t_data *data, char *ptr_path, char *temp1);
+int		this_pipex(t_data *data);
 int		check_file(t_data *data);
-void	free_all (t_data *data);
-void	free_ptr (char **ptr);
+int		child_execution_1(t_data *data);
+int		child_execution_2(t_data *data);
+void	fork_func(t_data *data, int pid1, int pid2);
+void	free_all(t_data *data);
+void	free_ptr(char **ptr);
 void	free_path(t_data *data);
 
 //utils

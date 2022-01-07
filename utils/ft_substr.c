@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/20 22:53:27 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/07 07:43:37 by dmonteir         ###   ########.fr       */
+/*   Created: 2022/01/07 07:44:28 by dmonteir          #+#    #+#             */
+/*   Updated: 2022/01/07 07:44:33 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
+/* will create a string with length len from position start of s */
 {
-	size_t			i;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	char				*c;
+	unsigned int		i;
 
+	if (!s)
+		return (0);
 	i = 0;
-	s1 = (unsigned char *)str1;
-	s2 = (unsigned char *)str2;
-	while (i < n && (s1[i] || s2[i]))
+	c = malloc(len + 1);
+	if (c == NULL)
+		return (0);
+	if (ft_strlen(s) < start)
 	{
-		if (s1[i] != s2[i])
-		{
-			return (s1[i] - s2[i]);
-		}
-		i++;
+		c[i] = '\0';
+		return (c);
 	}
-	return (0);
+	while (i < len)
+	{
+		c[i] = s[start];
+		i++;
+		start ++;
+	}
+	c[i] = '\0';
+	return (c);
 }
