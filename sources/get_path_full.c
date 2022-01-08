@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 07:21:51 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/07 18:43:36 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/08 20:41:54 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,23 @@ int	check_path_cmd1(t_data *data)
 	return (0);
 }
 
+
+void	check_cmd_null(t_data *data)
+{
+	if(*data->cmd1 == NULL)
+	{
+		write(1, "Comand invalid, try: infile cmd1 cmd2 outfile\n", 47);
+		free_all(data);
+		exit(EXIT_FAILURE);
+	}
+	if(*data->cmd2 == NULL)
+	{
+		write(1, "Comand invalid, try: infile cmd1 cmd2 outfile\n", 47);
+		free_all(data);
+		exit(EXIT_FAILURE);
+	}
+}
+
 char	get_path(t_data *data, char **argv, char **env)
 {
 	int		i;
@@ -96,6 +113,7 @@ char	get_path(t_data *data, char **argv, char **env)
 	free(str);
 	data->cmd1 = ft_split(argv[2], ' ');
 	data->cmd2 = ft_split(argv[3], ' ');
+	check_cmd_null(data);
 	check_path_cmd1(data);
 	check_path_cmd2(data);
 	return (0);

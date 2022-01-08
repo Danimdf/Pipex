@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:50:56 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/07 18:40:03 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/08 20:40:28 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int	this_pipex(t_data *data)
 	waitpid(pid2, &status_code, 0);
 	if (WIFEXITED(status_code))
 		status_code = WEXITSTATUS(status_code);
+	free_path(data);
 	free_all(data);
 	return (status_code);
 }

@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 07:41:16 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/07 17:59:00 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/08 20:37:10 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		child_execution_2(t_data *data);
 int		fork_func(t_data *data, int pid1, int pid2, int status_code);
 void	free_all(t_data *data);
 void	free_ptr(char **ptr);
+void	check_cmd_null(t_data *data);
 void	free_path(t_data *data);
 void	exit_free(t_data *data);
 
