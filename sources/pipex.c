@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:42:01 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/07 18:03:03 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/09 09:47:34 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ void	valid_params(t_data *data, char **argv, char **env)
 {
 	if (data->ac != 5)
 	{
-		perror("\nnumber of parameters is incorrect\n");
-		exit_free(data);
+		write(1, "Number of parameters is incorrect\n", 35);
+		free_ptr(data->av);
+		free_ptr(data->ev);
+		exit(1);
+		//exit_free(data);
 	}
 	else
 		get_path(data, argv, env);

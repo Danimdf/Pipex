@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:50:56 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/08 20:40:28 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/09 09:20:47 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	this_pipex(t_data *data)
 	status_code = 0;
 	check_file(data);
 	pid2 = fork_func(data, pid1, pid2, status_code);
-	waitpid(pid2, &status_code, 0);
+	waitpid(pid2, &status_code, WNOHANG);
 	if (WIFEXITED(status_code))
 		status_code = WEXITSTATUS(status_code);
 	free_path(data);

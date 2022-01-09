@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 07:21:51 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/08 20:41:54 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/09 09:52:40 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	check_path_cmd2(t_data *data)
 	{
 		perror("Command 2 not found!");
 		free_all(data);
+		free(data->path1);
 		exit(127);
 	}
 	return (0);
@@ -72,6 +73,7 @@ int	check_path_cmd1(t_data *data)
 	if (data->check_cmd == 0)
 	{
 		perror("Command 1 not found!");
+		//free_all(data);
 		return (1);
 	}
 	return (0);
