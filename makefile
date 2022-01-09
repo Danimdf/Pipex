@@ -6,7 +6,7 @@
 #    By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/19 16:52:46 by dmonteir          #+#    #+#              #
-#    Updated: 2022/01/09 17:22:48 by dmonteir         ###   ########.fr        #
+#    Updated: 2022/01/09 17:28:28 by dmonteir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ $(NAME):	$(OBJS) $(OBJS_UTILS)
 			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(OBJS_UTILS)
 
 clean:
-			$(RM) $(OBJS)
+			$(RM) $(OBJS) $(OBJS_UTILS)
 
 fclean:
 			$(RM) $(NAME) $(OBJS) $(OBJS_UTILS)
