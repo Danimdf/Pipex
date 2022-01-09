@@ -6,7 +6,7 @@
 #    By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/19 16:52:46 by dmonteir          #+#    #+#              #
-#    Updated: 2022/01/07 17:46:28 by dmonteir         ###   ########.fr        #
+#    Updated: 2022/01/09 17:22:48 by dmonteir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ FILES_UTILS =	./utils/ft_bzero.c \
 				./utils/ft_strncmp.c \
 				./utils/ft_strdup.c \
 				./utils/ft_split.c \
+				./utils/ft_calloc.c \
+				./utils/ft_substr.c \
 				./utils/ft_strjoin.c \
 
 RM = rm -f
@@ -39,7 +41,7 @@ clean:
 			$(RM) $(OBJS)
 
 fclean:
-			$(RM) $(NAME) $(OBJS)
+			$(RM) $(NAME) $(OBJS) $(OBJS_UTILS)
 
 re:			fclean all
 
