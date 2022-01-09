@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 07:41:16 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/08 20:37:10 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/09 16:22:21 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	free_all(t_data *data);
 void	free_ptr(char **ptr);
 void	check_cmd_null(t_data *data);
 void	free_path(t_data *data);
-void	exit_free(t_data *data);
+void	exit_free(t_data *data, char *msg);
+void	exit_cmd(t_data *data);
 
 //utils
 int		ft_strncmp(const char *str1, const char *str2, size_t n);

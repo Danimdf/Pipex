@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 07:09:19 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/08 20:47:04 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/09 16:22:08 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ void	free_path(t_data *data)
 	free(data->path2);
 }
 
+void	exit_cmd(t_data *data)
+{
+	free_all(data);
+	free(data->path1);
+	exit(127);
+}
 
 void	free_all(t_data *data)
 {
@@ -36,8 +42,9 @@ void	free_all(t_data *data)
 	free_ptr(data->cmd2);
 }
 
-void	exit_free(t_data *data)
+void	exit_free(t_data *data, char *msg)
 {
+	perror(msg);
 	free_path(data);
 	free_all(data);
 	exit(EXIT_FAILURE);

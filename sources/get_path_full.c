@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 07:21:51 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/09 09:52:40 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/09 15:58:26 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ int	check_path_cmd2(t_data *data)
 	if (data->check_cmd == 0)
 	{
 		perror("Command 2 not found!");
-		free_all(data);
-		free(data->path1);
-		exit(127);
+		exit_cmd(data);
 	}
 	return (0);
 }
@@ -73,22 +71,20 @@ int	check_path_cmd1(t_data *data)
 	if (data->check_cmd == 0)
 	{
 		perror("Command 1 not found!");
-		//free_all(data);
 		return (1);
 	}
 	return (0);
 }
 
-
 void	check_cmd_null(t_data *data)
 {
-	if(*data->cmd1 == NULL)
+	if (*data->cmd1 == NULL)
 	{
 		write(1, "Comand invalid, try: infile cmd1 cmd2 outfile\n", 47);
 		free_all(data);
 		exit(EXIT_FAILURE);
 	}
-	if(*data->cmd2 == NULL)
+	if (*data->cmd2 == NULL)
 	{
 		write(1, "Comand invalid, try: infile cmd1 cmd2 outfile\n", 47);
 		free_all(data);
