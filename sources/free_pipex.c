@@ -6,7 +6,7 @@
 /*   By: dmonteir <dmonteir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 07:09:19 by dmonteir          #+#    #+#             */
-/*   Updated: 2022/01/08 20:39:59 by dmonteir         ###   ########.fr       */
+/*   Updated: 2022/01/08 20:47:04 by dmonteir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ void	exit_free(t_data *data)
 {
 	free_path(data);
 	free_all(data);
-	exit(1);
+	exit(EXIT_FAILURE);
 }
